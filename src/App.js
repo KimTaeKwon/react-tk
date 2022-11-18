@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+import { useState } from "react";
 import './App.css';
 
-function App() {
+// function Typekey() {
+const Typekey = () => {
+  const[users, setUsers] = useState([{id:5, name:'name5'}]);
+  const download = () => {
+    let sample = [
+      {id:1, name:'name1'},
+      {id:2, name:'name2'},
+      {id:3, name:'name3'},
+      {id:4, name:'name4'}
+    ];
+    setUsers([...users, ...sample])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className='h10 m-tb10'></div>
+      <button onClick={download}>Down</button>
+      {users.map((u) => (
+        <div key={u.id}>
+          {u.id},{u.name}
+        </div>
+      ))}
     </div>
   );
 }
 
+
+function App() {
+    return (
+      <div>
+        {Typekey()}
+      </div>
+    );
+}
 export default App;
