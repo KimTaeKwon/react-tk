@@ -1,7 +1,31 @@
 import { useState } from "react";
 import './App.css';
 
-// function Typekey() {
+const Wrapper = ({children}) => {
+  const style = {
+    border : '1px solid red',
+    padding : '1em'
+  }
+  return (
+    <div style={style}>{children}</div>
+  )
+}
+
+const Block =  (val) => <div className={val}></div>;
+// const Block =  () => <div className='h10 m-tb10'></div>;
+
+const Plus = () => {
+  const[number,setNumber] = useState(0);
+  const add = () => setNumber(number+1);
+
+  return(
+    <div>
+      <h1>num : {number}</h1>
+      <button onClick={add}>plus</button>
+    </div>
+  );
+}
+
 const Typekey = () => {
   const[users, setUsers] = useState([{id:5, name:'name51'}]);
   const download = () => {
@@ -16,7 +40,6 @@ const Typekey = () => {
 
   return (
     <div>
-      <div className='h10 m-tb10'></div>
       <button onClick={download}>Down</button>
       {users.map((u) => (
         <div key={u.id}>
@@ -27,12 +50,14 @@ const Typekey = () => {
   );
 }
 
-
 function App() {
     return (
-      <div>
-        {Typekey()}
-      </div>
+      <Wrapper>
+          <Plus></Plus>
+          {/* <Block></Block> */}
+          {Block('h10 m-tb10')}
+          {Typekey()}
+      </Wrapper>
     );
 }
 export default App;
