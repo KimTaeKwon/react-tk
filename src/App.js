@@ -11,16 +11,61 @@ const Wrapper = ({children}) => {
   )
 }
 
-const Block =  (val) => <div className={val}></div>;
+const Block = (val) => <div className={val}></div>;
 // const Block =  () => <div className='h10 m-tb10'></div>;
+
+const Header = (props) => {
+  console.log('props',props, props.title);
+  return(
+    <header>
+      <h1>
+        <a href="/" 
+        onClick={(event) => {
+          event.preventDefault();
+          props.onChangeMode();
+        }}>
+        {props.title}</a>
+      </h1>
+    </header>
+  );
+}
+
+const List = (props) => {
+  const lis = [];
+  for (let i = 0; i < props.topics.length; i++) {
+    let t = props.topics[i];
+    lis.push(<li key={t.id}>
+      <a id={t.id} href={'/read/'+t.id} 
+        onClick={(event) => {
+          event.preventDefault();
+          props.onChangeMode(event.target.id);
+        }}
+      >
+      {t.title}</a></li>);
+  }
+  return(
+    <ol>
+      {lis}
+    </ol>
+  );
+}
+
+const Article = (props) => {
+  return(
+    <article>
+      <p>{props.title}</p>
+      <p>{props.body}</p>
+    </article>
+  );
+}
 
 const Plus = () => {
   const[number,setNumber] = useState(0);
   const add = () => setNumber(number+1);
 
-  return(
+  return (
     <div>
-      <h1>num : {number}</h1>
+      <p>num : {number}</p>
       <button onClick={add}>plus</button>
     </div>
   );
@@ -51,13 +96,25 @@ const Typekey = () => {
 }
 
 function App() {
-    return (
-      <Wrapper>
-          <Plus></Plus>
-          {/* <Block></Block> */}
-          {Block('h10 m-tb10')}
-          {Typekey()}
-      </Wrapper>
-    );
+  const topics = [
+    {id:1, title:'list1', body:'list array 1'},
+    {id:2, title:'list2', body:'list array 2'},
+    {id:3, title:'list3', body:'list array 3'},
+  ];
+  return (
+    <Wrapper>
+        <Header title='react' 
+        onChangeMode={() => {
+           alert('Hi');
+        }}>
+        </Header>
+        <Article title='Article title' body='Article body'></Article>
+        <Article title='Article2 title' body='Article2 body'></Article>
+        <List topics={topics} onChangeMode={(id) => {alert(id)}}></List>
+        <Plus></Plus>
+        {Block('h10 m-tb10')}
+        {Typekey()}
+    </Wrapper>
+  );
 }
 export default App;
