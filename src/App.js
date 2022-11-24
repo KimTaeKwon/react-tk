@@ -119,6 +119,8 @@ function App() {
       
     }
     content = <Article title={title} body={body}></Article>;
+  } else if(mode === 'create'){
+
   }
 
   return (
@@ -139,6 +141,9 @@ function App() {
         }}>
         </List>
         {content}
+
+        <a href="/"></a>
+
         {Block('h10 m-tb10')}
         <Plus></Plus>
         {Block('h10 m-tb10')}
