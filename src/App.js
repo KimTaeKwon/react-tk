@@ -88,24 +88,44 @@ const List = (props) => {
 const Article = (props) => {
   return(
     <article>
-      <p>{props.title}</p>
-      <p>{props.body}</p>
+      <p>title : {props.title}</p>
+      <p>body : {props.body}</p>
+    </article>
+  );
+}
+
+const Create = (props) => {
+  return(
+    <article>
+      <h2>Create</h2>
+      <form onSubmit={event=>{
+        event.preventDefault();
+        const title = event.target.title.value;
+        const body = event.target.body.value;
+        props.onCreate(title,body);
+      }}>
+        <div><input type="text" name="title" placeholder="title"></input></div>
+        <div><textarea name="body" placeholder="body"></textarea></div>
+        <div><input type="submit" value="Create"></input></div>
+      </form>
     </article>
   );
 }
 
 function App() {
-  const topics = [
+  const [topics, setTopics] = useState([
     {id:1, title:'list1', body:'list array 1'},
     {id:2, title:'list2', body:'list array 2'},
     {id:3, title:'list3', body:'list array 3'},
-  ];
+  ]);
 
   // const _mode = useState('welcome');
   // const mode = _mode[0];
   // const setMode = _mode[1];
   const [mode, setMode] = useState('welcome');
   const [id, setId] = useState(null);
+  const [nextId, setNextId] = useState(4);
+
   let content = null;
   if (mode === 'welcome') {
     content = <Article title='welcome' body='hello, welcome'></Article>;
@@ -120,12 +140,20 @@ function App() {
     }
     content = <Article title={title} body={body}></Article>;
   } else if(mode === 'create'){
-
+    content = <Create onCreate={(_title, _body)=>{
+      const newTopic = {id:nextId, title:_title, body:_body};
+      const newTopics = [...topics];
+      newTopics.push(newTopic);
+      setTopics(newTopics);
+      setMode('read');
+      setId(nextId);
+      setNextId(nextId+1);
+    }}></Create>;
   }
 
   return (
     <Wrapper>
-        <Header title='react' 
+        <Header title='h1' 
         onChangeMode={() => {
           //  alert('Hi');
           setMode('welcome');
@@ -142,7 +170,10 @@ function App() {
         </List>
         {content}
 
-        <a href="/"></a>
+        <a href="/create" onClick={event=>{
+          event.preventDefault();
+          setMode('create');
+        }}>create</a>
 
         {Block('h10 m-tb10')}
         <Plus></Plus>
