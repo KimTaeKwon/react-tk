@@ -6,11 +6,13 @@ const Block = (val) => <div className={val}></div>;
 const Plus = () => {
     const[number,setNumber] = useState(0);
     const add = () => setNumber(number+1);
+    const minus = () => setNumber(number-1);
   
     return (
       <div>
         <p>num : {number}</p>
         <button onClick={add}>plus</button>
+        <button onClick={minus}>minus</button>
       </div>
     );
 }
