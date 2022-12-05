@@ -9,6 +9,8 @@ function Nav() {
         <li><Link to="/Ca">Ca</Link></li>
         <li><Link to="/Cl">Cl</Link></li>
         <li><Link to="/Til">Til</Link></li>
+        <li><Link to="/soaple/Soaple">SOAPLE</Link></li>
+        <li><Link to="/soaple/SoapleLibrary">SoapleLibrary</Link></li>
       </ul>
     </div>
   );
