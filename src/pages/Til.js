@@ -4,17 +4,18 @@ const Block = (val) => <div className={val}></div>;
 // const Block =  () => <div className='h10 m-tb10'></div>;
 
 const Plus = () => {
-    const[number,setNumber] = useState(0);
-    const add = () => setNumber(number+1);
-    const minus = () => setNumber(number-1);
-  
-    return (
-      <div>
-        <p>num : {number}</p>
-        <button onClick={add}>plus</button>
-        <button onClick={minus}>minus</button>
-      </div>
-    );
+  // const [변수명, set변수명] = useState(초기값); // useState 사용법
+  const[number,setNumber] = useState(0);
+  const add = () => setNumber(number+1);
+  const minus = () => setNumber(number-1);
+
+  return (
+    <div>
+      <p>num : {number}</p>
+      <button onClick={add}>plus</button>
+      <button onClick={minus}>minus</button>
+    </div>
+  );
 }
 
 const Typekey = () => {
