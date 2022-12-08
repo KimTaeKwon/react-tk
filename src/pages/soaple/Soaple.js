@@ -126,15 +126,16 @@ const CommentList = (props) => {
   return(
     <div>
       {
-        replies.map((comment) => {
+        replies.map((comment, index) => {
           return(
-            <CommentText key={comment.id} name={comment.name} comment={comment.comment}></CommentText>
+            <CommentText key={index} name={comment.name} comment={comment.comment}></CommentText>
           );
         })
       }
     </div>
   );
 }
+
 
 const Counter = (props) => {
   // const [변수명, set변수명] = useState(초기값); // useState 사용법
@@ -161,6 +162,7 @@ const Counter = (props) => {
   );
 }
 
+
 const TextInputWithFocusButton = (props) => {
   const inputElem = useRef(null);
   const onButtonClick = () => {
@@ -177,9 +179,96 @@ const TextInputWithFocusButton = (props) => {
   );
 }
 
+
+const useCounter = (initiaValue) => {
+  const [count, setCount] = useState(initiaValue);
+  const increaseCount = () => setCount((count) => count + 1);
+  const decreaseCount = () => setCount((count) => Math.max(count - 1, 0));
+
+  return [count, increaseCount, decreaseCount];
+}
+const MAX_CAPACITY = 10;
+const Accommodate = (props) => {
+  const [isFull, setIsFull] = useState(false);
+  const [count, increaseCount, decreaseCount] = useCounter(0);
+
+  useEffect(() => {
+    console.log('==============================');
+    console.log('useEffect() is called');
+    console.log(`isFull: ${isFull}`);
+  });
+  
+  useEffect(() => {
+    setIsFull(count >= MAX_CAPACITY);
+    console.log(`Current count value: ${count}`);
+  }, [count]);
+  
+  return(
+    <div>
+      <p>{`총 ${count}명 수용했습니다.`}</p>
+      <button onClick={increaseCount} disabled={isFull}>입장</button>
+      <button onClick={decreaseCount}>퇴장</button>
+      {isFull && <p style={{color:'red'}}>정원이 가득찼습니다.</p>}
+    </div>
+  );
+}
+
+
+const ConfirmButton = (props) => {
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const handleConfirmed = () => {
+    setIsConfirmed((prevIsConfirmed) => !prevIsConfirmed);
+  }
+  return(
+    <div>
+      <button onClick={handleConfirmed} disabled={isConfirmed}>
+        {isConfirmed ? '확인됨' : '확인하기'}
+      </button>
+    </div>
+  );
+}
+
+
+const MailBox = (props) => {
+  const unReadMail = props.unReadMail;
+  return(
+    <div>
+      {unReadMail.length > 0 &&
+        <p>현재 {unReadMail.length}개의 읽지 않은 메시지가 있습니다.</p>
+      }
+    </div>
+  );
+}
+
+
+const Toolbar = (props) => {
+  const {isLoggedIn, onClickLogin, onClickLogout} = props;
+  return(
+    <div>
+      {isLoggedIn && <span>Welcome!</span>}
+      {isLoggedIn ? (<button onClick={onClickLogout}>Logout</button>) : (<button onClick={onClickLogin}>Login</button>)}
+    </div>
+  );
+}
+const LandingPage = (props) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const onClickLogin = () => {
+    setIsLoggedIn(true);
+  }
+  const onClickLogout = () => {
+    setIsLoggedIn(false);
+  }
+  return(
+    <div>
+      <Toolbar isLoggedIn={isLoggedIn} onClickLogin={onClickLogin} onClickLogout={onClickLogout}></Toolbar>
+      <p>Go!</p>
+    </div>
+  );
+}
+
 function Soaple() {
   return (
-    <>
+    <div className="soaple">
     <Tick></Tick>
     <hr />
     <TilProps></TilProps>
@@ -191,7 +280,16 @@ function Soaple() {
     <Counter></Counter>
     <hr />
     <TextInputWithFocusButton></TextInputWithFocusButton>
-    </>
+    <hr />
+    <Accommodate></Accommodate>
+    <hr />
+    <ConfirmButton></ConfirmButton>
+    <hr />
+    <MailBox unReadMail={[1,2]}></MailBox>
+    <hr />
+    <LandingPage></LandingPage>
+    <hr />
+    </div>
   );
 }
 
