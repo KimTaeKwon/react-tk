@@ -266,6 +266,89 @@ const LandingPage = (props) => {
   );
 }
 
+
+const SignUp = (props) => {
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState('male');
+  const handleChangeName = (event) => {
+    setName(event.target.value);
+  }
+  const handleChangeGender = (event) => {
+    setGender(event.target.value);
+  }
+  const handleSubmit = (event) => {
+    alert(`이름 : ${name}, 성별 : ${gender}`);
+    event.preventDefault();
+  }
+  return(
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          name : <input type="text" value={name} onChange={handleChangeName} />
+        </label>
+        <label>
+          gender :
+          <select value={gender} onChange={handleChangeGender}>
+            <option value="male">male</option>
+            <option value="female">female</option>
+          </select>
+        </label>
+        <button type="submit">submit</button>
+      </form>
+    </div>
+  );
+}
+
+
+const scaleNames = {
+  c : '섭씨',
+  f : '화씨',
+}
+const TemperatureInput = (props) => {
+  const handleChange = (event) => {
+    props.onTemperatureChange(event.target.value);
+  };
+
+  return(
+    <div>
+      <fieldset>
+        <legend>
+          온도를 입력해주세요.(단위 : {scaleNames[props.scale]})
+        </legend>
+        <input value={props.temperature} onChange={handleChange} />
+      </fieldset>
+    </div>
+  );
+}
+
+const BoilingVerdict = (props) => {
+  if (props.cesius >= 100) {
+    return <p>물이 끓습니다.</p>;
+  }
+  return <p>물이 끓지 않습니다.</p>;
+};
+const toCelsius = (fahrenheit) => {
+  return ((fahrenheit-32)*5)/9;
+};
+const toFahrenheit = (celsius) => {
+  return (celsius * 9) / 5 + 32;
+};
+const tryConvert = (temperature, convert) => {
+  const input = parseFloat(temperature);
+  if (Number.isNaN(input)) {
+    return '';
+  }
+};
+const Calculator = (props) => {
+  return(
+    <div>
+      <TemperatureInput scale='c'></TemperatureInput>
+      <TemperatureInput></TemperatureInput>
+    </div>
+  );
+}
+
+
 function Soaple() {
   return (
     <div className="soaple">
@@ -289,6 +372,9 @@ function Soaple() {
     <hr />
     <LandingPage></LandingPage>
     <hr />
+    <SignUp></SignUp>
+    <hr />
+    <Calculator></Calculator>
     </div>
   );
 }
