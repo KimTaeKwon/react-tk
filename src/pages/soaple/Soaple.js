@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import {React, useState, useEffect, useRef, useContext, useCallback } from "react";
 
 const Tick = () => {
   const [date, setDate] = useState(new Date());
@@ -372,6 +372,63 @@ const Calculator = (props) => {
 }
 
 
+const Card = (props) => {
+  const {title, backgroundColor, children} = props;
+  return(
+    <div style={{backgroundColor : backgroundColor}}>
+      {title && <h1>{title}</h1>} {/*title이 있으면 h1 노출*/}
+      {children}
+    </div>
+  );
+};
+
+const ProfileCard = (props) => {
+  return(
+    <div>
+      <Card title='TaeKwon' backgroundColor='#c1c1c1'>
+        <p>innerText01</p>
+        <p>innerText02</p>
+      </Card>
+    </div>
+  );
+};
+
+
+// const ThemeContext = React.createContext();
+// ThemeContext.displayName = 'ThemeContext';
+// const MainContent = (props) => {
+//   const {theme, toggleTheme} = useContext(ThemeContext);
+//   return(
+//     <div style={{
+//       backgroundColor: theme == 'light'? 'white': 'black',
+//       color : theme == 'light'? 'white': 'black',
+//     }}>
+//       <p>useContext</p>
+//       <button onClick={toggleTheme}>Change Theme</button>
+//     </div>
+//   );
+// };
+// const DarkOrLight = (props) => {
+//   const [theme, setTheme] = useState('light');
+//   const toggleTheme = useCallback(() => {
+//     if (theme == 'light') {
+//       setTheme('dark');
+//     } else if(theme == 'dark') {
+//       setTheme('light');
+//     }
+//   }, [theme]);
+
+//   return(
+//     <div>
+//       <ThemeContext.provider value={{theme, toggleTheme}}>
+//         <MainContent></MainContent>
+//       </ThemeContext.provider>
+//     </div>
+//   );
+// };
+
+
+
 function Soaple() {
   return (
     <div className="soaple">
@@ -398,6 +455,10 @@ function Soaple() {
     <SignUp></SignUp>
     <hr />
     <Calculator></Calculator>
+    <hr />
+    <ProfileCard></ProfileCard>
+    <hr />
+    {/* <DarkOrLight></DarkOrLight> */}
     </div>
   );
 }
