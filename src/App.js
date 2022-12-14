@@ -7,6 +7,8 @@ import Til from "./pages/Til";
 
 import Soaple from "./pages/soaple/Soaple";
 import SoapleLibrary from "./pages/soaple/SoapleLibrary";
+
+import MainPage from "./pages/soaple/SoapleBlog/page/MainPage";
 // import './App.css';
 import './App.scss';
 
@@ -30,9 +32,9 @@ function App() {
           <Route path="/Ca" element={<Ca></Ca>}></Route>
           <Route path="/Cl" element={<Cl></Cl>}></Route>
           <Route path="/Til" element={<Til></Til>}></Route>
-          
           <Route path="/soaple/Soaple" element={<Soaple></Soaple>}></Route>
           <Route path="/soaple/SoapleLibrary" element={<SoapleLibrary></SoapleLibrary>}></Route>
+          <Route path="/soaple/SoapleBlog/page/MainPage" element={<MainPage></MainPage>}></Route>
         </Routes>
       </BrowserRouter>
     </Wrapper>
