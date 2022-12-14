@@ -11,6 +11,7 @@ function Nav() {
         <li><Link to="/Til">Til</Link></li>
         <li><Link to="/soaple/Soaple">SOAPLE</Link></li>
         <li><Link to="/soaple/SoapleLibrary">SoapleLibrary</Link></li>
+        <li><Link to="/soaple/SoapleBlog/page/MainPage">SoapleBlog</Link></li>
       </ul>
     </div>
   );
