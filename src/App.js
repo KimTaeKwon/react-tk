@@ -9,6 +9,9 @@ import Soaple from "./pages/soaple/Soaple";
 import SoapleLibrary from "./pages/soaple/SoapleLibrary";
 
 import MainPage from "./pages/soaple/SoapleBlog/page/MainPage";
+import PostViewPage from './pages/soaple/SoapleBlog/page/PostViewPage';
+import PostWritePage from './pages/soaple/SoapleBlog/page/PostWritePage';
+
 // import './App.css';
 import './App.scss';
 
@@ -22,7 +25,7 @@ const Wrapper = ({children}) => {
   )
 }
 
-function App() {
+function App(props) {
   return (
     <Wrapper>
       <BrowserRouter>
@@ -34,7 +37,10 @@ function App() {
           <Route path="/Til" element={<Til></Til>}></Route>
           <Route path="/soaple/Soaple" element={<Soaple></Soaple>}></Route>
           <Route path="/soaple/SoapleLibrary" element={<SoapleLibrary></SoapleLibrary>}></Route>
+
           <Route path="/soaple/SoapleBlog/page/MainPage" element={<MainPage></MainPage>}></Route>
+          <Route path='post/:postId' element={<PostViewPage />}></Route>
+          <Route path='post-write' element={<PostWritePage></PostWritePage>}></Route>
         </Routes>
       </BrowserRouter>
     </Wrapper>
