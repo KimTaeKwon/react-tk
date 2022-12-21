@@ -42,9 +42,17 @@ const Typekey = () => {
     );
 }
 
-function Til() {
+const TitleText = (props) => {
+  return(
+    <p>{`${props.name}`}</p>
+  );
+};
+
+function Til(props) {
   return (
     <>
+        <TitleText name={'asd'}></TitleText>
+        
         {Block('h10 m-tb10')}
         <Plus></Plus>
         {Block('h10 m-tb10')}
