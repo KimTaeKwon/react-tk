@@ -8,7 +8,7 @@ const Wrapper = (props) => {
 
 const ContentText = (props) => {
     return(
-      <p>{props.children}</p>
+      <p>{this.props.children}</p>
     );
 };
 
