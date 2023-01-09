@@ -12,3 +12,23 @@
         .avatar {width: 15px;}
     }
 }
+
+.roulette {
+    // transition: all 0.2s linear infinite;
+    .act {animation: rotate 0.2s linear infinite;}
+    // &:hover {animation: rotate 0.2s linear infinite;}
+    circle {transform-origin: center;}
+}
+
+@keyframes rotate {
+    from {
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(359deg);
+      -o-transform: rotate(359deg);
+      transform: rotate(359deg);
+    }
+}

@@ -12,6 +12,7 @@ function Nav() {
         <li><Link to="/soaple/Soaple">SOAPLE</Link></li>
         <li><Link to="/soaple/SoapleLibrary">SoapleLibrary</Link></li>
         <li><Link to="/soaple/SoapleBlog/page/MainPage">SoapleBlog</Link></li>
+        <li><Link to="/Roulette">Roulette</Link></li>
       </ul>
     </div>
   );
