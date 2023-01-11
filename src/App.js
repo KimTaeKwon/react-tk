@@ -7,10 +7,11 @@ import Til from "./pages/Til";
 
 import Soaple from "./pages/soaple/Soaple";
 import SoapleLibrary from "./pages/soaple/SoapleLibrary";
-
 import MainPage from "./pages/soaple/SoapleBlog/page/MainPage";
 import PostViewPage from './pages/soaple/SoapleBlog/page/PostViewPage';
 import PostWritePage from './pages/soaple/SoapleBlog/page/PostWritePage';
+
+import Roulette from "./pages/Roulette";
 
 // import './App.css';
 import './App.scss';
@@ -41,6 +42,8 @@ function App(props) {
           <Route path="/soaple/SoapleBlog/page/MainPage" element={<MainPage></MainPage>}></Route>
           <Route path='post/:postId' element={<PostViewPage />}></Route>
           <Route path='post-write' element={<PostWritePage></PostWritePage>}></Route>
+
+          <Route path="/Roulette" element={<Roulette></Roulette>}></Route>
         </Routes>
       </BrowserRouter>
     </Wrapper>
