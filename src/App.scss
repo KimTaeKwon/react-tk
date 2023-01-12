@@ -14,10 +14,20 @@
 }
 
 .roulette {
-    // transition: all 0.2s linear infinite;
-    .act {animation: rotate 0.2s linear infinite;}
+    transition: all ease 4s;
+    // &.act {animation: rotate 0.2s linear infinite;}
+    &.act {transform: rotate(3600deg);}
     // &:hover {animation: rotate 0.2s linear infinite;}
     circle {transform-origin: center;}
+    text {font-size: 8px; text-anchor: start;}
+
+    // circle:nth-child(1) {transform: rotate(0deg);}
+
+    @for $i from 1 through 10 {
+        circle:nth-child(#{$i}) {
+            transform: rotate(90deg*$i);
+        }
+    }
 }
 
 @keyframes rotate {
