@@ -2,14 +2,44 @@ import { useState } from "react";
 import React from 'react'
 
 const Board = (props) => {
-    const [isActive, setActive] = useState('false');
-    // const handleToggle = () => {
-    //     setActive(!isActive);
-    // };
+  // const [isActive, setActive] = useState('false');
+  // const handleToggle = () => {
+  //     setActive(!isActive);
+  // };
+
+
+  const handleToggle = () => {
+    let asd = Math.random();
+    // console.log(Math.ceil((asd)*10000));
+    let rotate = Math.ceil((asd)*10000);
+
+    document.querySelector('#roulette').style.transform = 'rotate('+rotate+'deg)';
+
+    setTimeout(() => {
+      alert(rotate);
+      window.location.reload();
+      // document.querySelector('#roulette').style.transform = 'none';
+    }, 4500);
+  };
+
   return(
-    <div className="roulette">
+    <>
+    {/* <div style={{transform: 'rotate(3600deg)'}} className={isActive ? 'roulette act' : 'roulette'}> */}
+    <div id="roulette" className={'roulette'}>
         <svg viewBox="0 0 40 40">
-            <circle
+            <g>
+              <circle
+                    r="10"
+                    cx="20"
+                    cy="20"
+                    fill="transparent"
+                    stroke="tomato"
+                    strokeWidth={"20"}
+                    strokeDasharray={"calc(25 * calc(2*3.14*10) / 100) calc(2*3.14*10)"}
+              />
+              <text x="20%" y="70%" textAnchor="end" stroke="white" strokeWidth="0px" dy=".3em" fontSize="12px" fill="white">꽝</text>
+            </g>
+            {/* <circle
                 r="10"
                 cx="20"
                 cy="20"
@@ -17,8 +47,8 @@ const Board = (props) => {
                 stroke="tomato"
                 strokeWidth={"20"}
                 strokeDasharray={"calc(25 * calc(2*3.14*10) / 100) calc(2*3.14*10)"}
-                transform="rotate(0)"
-            />
+            /> */}
+            
             <circle
                 r="10"
                 cx="20"
@@ -27,8 +57,21 @@ const Board = (props) => {
                 stroke="pink"
                 strokeWidth={"20"}
                 strokeDasharray={"calc(25 * calc(2*3.14*10) / 100) calc(2*3.14*10)"}
-                transform="rotate(90)"
             />
+
+            {/* <g>
+            <circle
+                r="10"
+                cx="20"
+                cy="20"
+                fill="transparent"
+                stroke="pink"
+                strokeWidth={"20"}
+                strokeDasharray={"calc(25 * calc(2*3.14*10) / 100) calc(2*3.14*10)"}
+            />
+            <text x="20%" y="70%" textAnchor="end" stroke="white" strokeWidth="0px" dy=".3em" fontSize="12px" fill="white">1</text>
+            </g> */}
+
             <circle
                 r="10"
                 cx="20"
@@ -37,7 +80,6 @@ const Board = (props) => {
                 stroke="yellow"
                 strokeWidth={"20"}
                 strokeDasharray={"calc(25 * calc(2*3.14*10) / 100) calc(2*3.14*10)"}
-                transform="rotate(180)"
             />
             <circle
                 r="10"
@@ -47,23 +89,24 @@ const Board = (props) => {
                 stroke="red"
                 strokeWidth={"20"}
                 strokeDasharray={"calc(25 * calc(2*3.14*10) / 100) calc(2*3.14*10)"}
-                transform="rotate(270)"
             />
         </svg>
     </div>
+    <button onClick={handleToggle}>Start</button>
+    </>
   );
 };
 
-const StartButton = (props) => {
-    const [isActive, setActive] = useState('false');
-    const handleToggle = () => {
-        setActive(!isActive);
-    };
-  return(
-    // <button onClick={handleToggle} className={isActive ? 'act' : null}>{`${props.name}`}</button>
-    <button  onClick={handleToggle}>{`${props.name}`}</button>
-  );
-};
+// const StartButton = (props) => {
+//     const [isActive, setActive] = useState('false');
+//     const handleToggle = () => {
+//         setActive(!isActive);
+//     };
+//   return(
+//     // <button onClick={handleToggle} className={isActive ? 'act' : null}>{`${props.name}`}</button>
+//     <button onClick={handleToggle}>{`${props.name}`}</button>
+//   );
+// };
 
 const Roulette = (props) => {
 
@@ -71,7 +114,7 @@ const Roulette = (props) => {
   return (
       <div>
         <Board></Board>
-        <StartButton name="Start"></StartButton>
+        
         
         {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
             <path d="M80 80
